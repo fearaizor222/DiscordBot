@@ -5,8 +5,8 @@ from Module import *
 
 with requests.Session() as sess:
     login_data = {
-        'username': 'N21DCCN165',
-        'password': '25092003',
+        'username': '',
+        'password': '',
         'grant_type': 'password'
     }
     Login(sess, login_data)
