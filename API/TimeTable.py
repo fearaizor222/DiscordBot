@@ -27,4 +27,23 @@ def TimeTable(sess: requests.Session(), semester: int) -> dict:
     special_headers = sess.headers.copy()
     special_headers['content-type'] = 'application/json'
 
-    return sess.post(API_Endpoint['Xem_Lich_Hoc'], headers=special_headers, json=json_data).json()['data']
+    data = sess.post(API_Endpoint['Xem_Lich_Hoc'], headers=special_headers, json=json_data).json()['data']
+    tkb_hk = data.pop('ds_tuan_tkb')
+
+    needed_data = [
+        'tiet_bat_dau',
+        'so_tiet',
+        'ma_mon',
+        'ten_mon',
+        'ten_giang_vien',
+        'ma_phong',
+        'ngay_hoc' 
+    ]
+    for week in tkb_hk:
+        week.pop('ds_id_thoi_khoa_bieu_trung', None)
+        for day in week['ds_thoi_khoa_bieu']:
+            for key in list(day):
+                if key not in needed_data:
+                    day.pop(key, None)
+
+    return tkb_hk
