@@ -10,7 +10,7 @@ def Score(sess: requests.Session()) -> dict:
     dsdiemhk = sess.post(API_Endpoint['Xem_Diem']).json()['data']['ds_diem_hocky'][4]
     needed_obj = ['hoc_ky','ten_hoc_ky','so_tin_chi_dat_tich_luy','so_tin_chi_dat_hk','ds_diem_mon_hoc','dtb_hk_he10','dtb_hk_he4','dtb_tich_luy_he_10','dtb_tich_luy_he_4']
     needed_ds_diem=['ma_mon','nhom_to','ten_mon','so_tin_chi','diem_thi','diem_giua_ki','diem_tk','diem_tk_so','diem_tk_chu','ds_diem_thanh_phan']
-    stt=0;
+    stt=0
     
     for obj in data:
         
