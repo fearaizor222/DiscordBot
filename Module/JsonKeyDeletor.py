@@ -9,7 +9,8 @@ def JsonKeyDeletor(json_data: dict, needed_data: list) -> None:
         for k, v in list(json_data.items()):
             if k not in needed_data:
                 json_data.pop(k, None)
-            JsonKeyDeletor(v, needed_data)
+            else:
+                JsonKeyDeletor(v, needed_data)
     elif isinstance(json_data, list):
         for item in json_data:
             JsonKeyDeletor(item, needed_data)
