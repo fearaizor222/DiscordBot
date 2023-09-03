@@ -1,4 +1,5 @@
 import requests
+import Module.JsonKeyDeletor as JsonKeyDeletor
 import json
 
 
@@ -32,9 +33,7 @@ def ExamSchedule(sess: requests.Session, semester: int) -> dict:
     ds_lichthi = data['ds_lich_thi']
     needed_data = ['so_thu_tu', 'ky_thi', 'ma_mon', 'ten_mon', 'ma_phong', 'ngay_thi',
                    'tiet_bat_dau', 'so_tiet', 'gio_bat_dau', 'so_phut', 'hinh_thuc', 'si_so']
-    for obj in ds_lichthi:
-        for key in list(obj):
-            if key not in needed_data:
-                obj.pop(key, None)
+
+    JsonKeyDeletor(ds_lichthi, needed_data)
 
     return ds_lichthi
