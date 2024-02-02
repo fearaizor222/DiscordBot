@@ -1,7 +1,7 @@
 import json
 import requests
 
-def Login(session: requests.Session(), login_data: dict) -> None:
+def Login(session: requests.Session(), login_data: dict) -> str:
     """
     Login to UIS system
     :param session: Session to use
@@ -13,9 +13,6 @@ def Login(session: requests.Session(), login_data: dict) -> None:
 
     with open('Additional_Data.json', 'r') as AD:
         data = json.load(AD)
-        headers = data['headers']
-    access_token = session.post(url=API_Endpoint['Login'], headers=headers, data=login_data).json()['access_token']
-    auth_headers = headers.copy()
-    auth_headers['authorization'] = f'bearer {access_token}'
-    session.headers = auth_headers
-    # print(cookies)
+    session_data = session.post(url=API_Endpoint['Login'], data=login_data).json()
+    session.headers['authorization'] = f'bearer {session_data["access_token"]}'
+    return session_data['refresh_token']
