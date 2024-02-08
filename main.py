@@ -1,4 +1,3 @@
-import requests
 import json
 from API import *
 from Module import *
@@ -13,18 +12,6 @@ app = lightbulb.BotApp(
     prefix='!'
 )
 
-@app.command
-@lightbulb.command('info', 'return info')
-@lightbulb.implements(lightbulb.SlashCommand)
-async def ping(ctx: lightbulb.Context):
-    with requests.Session() as sess:
-        login_data = {
-            'username': 'n21dccn165',
-            'password': '25092003',
-            'grant_type': 'password'
-        }
-        Login(sess, login_data)
-
-        await ctx.respond(Info(sess)['ma_sv'])
+app.load_extensions_from("Extensions")
 
 app.run()
