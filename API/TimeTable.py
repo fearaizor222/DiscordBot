@@ -1,14 +1,9 @@
 import json
 import requests
 import Module.JsonKeyDeletor as JsonKeyDeletor
-
+from global_config import *
 
 def TimeTable(sess: requests.Session(), semester: int) -> dict:
-    with open('API_Endpoint.json', 'r') as API:
-        API_Endpoint = json.load(API)
-    with open('Additional_Data.json', 'r') as AD:
-        data = json.load(AD)
-
     json_data = {
         'filter': {
             'hoc_ky': semester,
@@ -32,7 +27,7 @@ def TimeTable(sess: requests.Session(), semester: int) -> dict:
     special_headers['content-type'] = 'application/json'
 
     data = sess.post(API_Endpoint['Xem_Lich_Hoc'],
-                     headers=special_headers, json=json_data, timeout=data['timeout']).json()['data']
+                     headers=special_headers, json=json_data, timeout=config['timeout']).json()['data']
     tkb_hk = data.pop('ds_tuan_tkb')
 
     needed_data = [
