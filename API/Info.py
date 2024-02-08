@@ -9,7 +9,7 @@ def Info(sess: requests.Session()) -> dict:
     with open('Additional_Data.json', 'r') as AD:
         data = json.load(AD)
 
-    info = sess.post(API_Endpoint['Xem_Info'], timeout='timeout').json()
+    info = sess.post(API_Endpoint['Xem_Info'], timeout=data['timeout']).json()
     ma_sv = info['data']['ma_sv']
     image = sess.post(API_Endpoint['Info_Picture'], params=f'MaSV={ma_sv}', timeout=data['timeout']).json()[
         'data']['thong_tin_sinh_vien']['image']
