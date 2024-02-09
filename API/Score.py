@@ -3,7 +3,7 @@ import Module.JsonKeyDeletor as JsonKeyDeletor
 import requests
 from global_config import *
 
-def Score(sess: requests.Session()) -> dict:
+def Score(sess: requests.Session) -> dict:
     data = sess.post(API_Endpoint['Xem_Diem'], timeout=config['timeout']).json()['data']['ds_diem_hocky']
 
     # dsdiemhk = sess.post(API_Endpoint['Xem_Diem']).json()['data']['ds_diem_hocky'][4]

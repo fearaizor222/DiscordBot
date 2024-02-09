@@ -3,7 +3,7 @@ import requests
 import Module.JsonKeyDeletor as JsonKeyDeletor
 from global_config import *
 
-def TimeTable(sess: requests.Session(), semester: int) -> dict:
+def TimeTable(sess: requests.Session, semester: int) -> dict:
     json_data = {
         'filter': {
             'hoc_ky': semester,
