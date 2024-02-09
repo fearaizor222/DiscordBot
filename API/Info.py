@@ -1,17 +1,12 @@
 import json
 import requests
 import Module.JsonKeyDeletor as JsonKeyDeletor
-
+from global_config import *
 
 def Info(sess: requests.Session()) -> dict:
-    with open('API_Endpoint.json', 'r') as API:
-        API_Endpoint = json.load(API)
-    with open('Additional_Data.json', 'r') as AD:
-        data = json.load(AD)
-
-    info = sess.post(API_Endpoint['Xem_Info'], timeout='timeout').json()
+    info = sess.post(API_Endpoint['Xem_Info'], timeout=config['timeout']).json()
     ma_sv = info['data']['ma_sv']
-    image = sess.post(API_Endpoint['Info_Picture'], params=f'MaSV={ma_sv}', timeout=data['timeout']).json()[
+    image = sess.post(API_Endpoint['Info_Picture'], params=f'MaSV={ma_sv}', timeout=config['timeout']).json()[
         'data']['thong_tin_sinh_vien']['image']
     info['data'].update({'image': "data:image/png;base64," + image})
     info = info['data']
