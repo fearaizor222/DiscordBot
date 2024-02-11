@@ -1,15 +1,11 @@
-import json
 import requests
-import Module.JsonKeyDeletor as JsonKeyDeletor
+from Module import jsonKeyDeletor
+from global_configuration import *
 
-
-def Info(sess: requests.Session()) -> dict:
-    with open('API_Endpoint.json', 'r') as API:
-        API_Endpoint = json.load(API)
-
-    info = sess.post(API_Endpoint['Xem_Info']).json()
+def requestInfo(sess: requests.Session) -> dict:
+    info = sess.post(ENDPOINT['Xem_Info'], timeout=CONFIG['timeout']).json()
     ma_sv = info['data']['ma_sv']
-    image = sess.post(API_Endpoint['Info_Picture'], params=f'MaSV={ma_sv}').json()[
+    image = sess.post(ENDPOINT['Info_Picture'], params=f'MaSV={ma_sv}', timeout=CONFIG['timeout']).json()[
         'data']['thong_tin_sinh_vien']['image']
     info['data'].update({'image': "data:image/png;base64," + image})
     info = info['data']
@@ -18,6 +14,6 @@ def Info(sess: requests.Session()) -> dict:
                    'email2', 'so_cmnd', 'ho_khau_thuong_tru_gd', 'so_tk', 'lop', 'khu_vuc', 'doi_tuong_uu_tien', 'khoi', 'nganh', 'chuyen_nganh', 'khoa',
                    'ba_he_dao_tao', 'nien_khoa', 'ma_truong', 'ten_truong', 'nhhk_vao', 'nhhk_ra', 'hien_dien_sv', 'image']
 
-    JsonKeyDeletor(info, needed_data)
+    jsonKeyDeletor(info, needed_data)
 
     return info
