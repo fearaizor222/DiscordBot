@@ -1,9 +1,9 @@
 {
-    "Login": "please enter the link",
-    "Xem_Info": "please enter the link",
-    "Info_Picture": "please enter the link",
-    "Xem_Lich_Hoc": "please enter the link",
-    "Xem_Lich_Thi": "please enter the link",
-    "Xem_Diem": "please enter the link",
-    "Xem_Hoc_Phi": "please enter the link"
+    "Login": "please find, copy and paste this api endpoint",
+    "Xem_Info": "please find, copy and paste this api endpoint",
+    "Info_Picture": "please find, copy and paste this api endpoint",
+    "Xem_Lich_Hoc": "please find, copy and paste this api endpoint",
+    "Xem_Lich_Thi": "please find, copy and paste this api endpoint",
+    "Xem_Diem": "please find, copy and paste this api endpoint",
+    "Xem_Hoc_Phi": "please find, copy and paste this api endpoint"
 }
