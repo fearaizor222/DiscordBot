@@ -1,1 +1,2 @@
-from Module.JsonKeyDeletor import JsonKeyDeletor
+from Module.json_key_deletor import jsonKeyDeletor
+from Module.id_card import generateIdCard

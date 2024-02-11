@@ -1,4 +1,4 @@
-def JsonKeyDeletor(json_data: dict, needed_data: list) -> None:
+def jsonKeyDeletor(json_data: dict, needed_data: list) -> None:
     """
     Delete all keys that are not in needed_data
     :param json_data: JSON data
@@ -10,9 +10,9 @@ def JsonKeyDeletor(json_data: dict, needed_data: list) -> None:
             if k not in needed_data:
                 json_data.pop(k, None)
             else:
-                JsonKeyDeletor(v, needed_data)
+                jsonKeyDeletor(v, needed_data)
     elif isinstance(json_data, list):
         for item in json_data:
-            JsonKeyDeletor(item, needed_data)
+            jsonKeyDeletor(item, needed_data)
     else:
         return None

@@ -1,12 +1,11 @@
-import json
 from API import *
 from Module import *
 import lightbulb
-from global_config import *
+from global_configuration import *
 from lightbulb.ext import tasks
 
 app = lightbulb.BotApp(
-    token=config['token'],
+    token=CONFIG['token'],
     prefix='!'
 )
 

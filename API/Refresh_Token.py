@@ -1,15 +1,14 @@
-from global_config import *
+from global_configuration import *
 import requests
 
-
-def RefreshToken(discord_id: str) -> None:
-    refresh_token = client['Users'].find_one({'discord_id': discord_id})['refresh_token']
+def refreshToken(discord_id: str) -> None:
+    refresh_token = CLIENT['Users'].find_one({'discord_id': discord_id})['refresh_token']
     data = {
         'refresh_token': refresh_token,
         'grant_type': 'refresh_token',
     }
-    response = requests.post(API_Endpoint['Login'], data=data, timeout=config['timeout']).json()
-    client['Users'].update_one(
+    response = requests.post(ENDPOINT['Login'], data=data, timeout=CONFIG['timeout']).json()
+    CLIENT['Users'].update_one(
         {
             'discord_id': discord_id
         }, 

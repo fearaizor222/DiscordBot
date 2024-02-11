@@ -1,7 +1,7 @@
 import lightbulb
 from API import *
 import requests
-from global_config import *
+from global_configuration import *
 from lightbulb.ext import tasks
 
 plugin = lightbulb.Plugin('Utilities')
@@ -15,18 +15,18 @@ plugin = lightbulb.Plugin('Utilities')
 async def link(ctx: lightbulb.Context):
     try:
         sess = requests.Session()
-        access, refresh = Login(sess, {
+        access, refresh = requestLogin(sess, {
             'username': ctx.options.username,
             'password': ctx.options.password,
             'grant_type': 'password'
         })
 
         if access:
-            if client['Users'].find_one({'discord_id': ctx.author.id}):
-                client['Users'].update_one({'discord_id': ctx.author.id}, {'$set': {'access_token': access, 'refresh_token': refresh}})
+            if CLIENT['Users'].find_one({'discord_id': ctx.author.id}):
+                CLIENT['Users'].update_one({'discord_id': ctx.author.id}, {'$set': {'access_token': access, 'refresh_token': refresh}})
                 await ctx.respond('Overwrited your linked account.')
             else:
-                client['Users'].insert_one({'discord_id': ctx.author.id, 'access_token': access,
+                CLIENT['Users'].insert_one({'discord_id': ctx.author.id, 'access_token': access,
                                             'refresh_token': refresh})
                 await ctx.respond('Linked your account.')
         else:
@@ -42,7 +42,7 @@ async def link(ctx: lightbulb.Context):
 @lightbulb.command("unlink", "Unlink your Discord account with your UIS account")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def unlink(ctx: lightbulb.Context):
-    result = client['Users'].delete_one({'discord_id': ctx.author.id})
+    result = CLIENT['Users'].delete_one({'discord_id': ctx.author.id})
     if result.deleted_count:
         await ctx.respond('Unlinked your account.')
     else:
@@ -51,9 +51,9 @@ async def unlink(ctx: lightbulb.Context):
 
 @tasks.task(m=90, auto_start=True)
 async def refresh():
-    for user in client['Users'].find({}, {'_id': False}):
+    for user in CLIENT['Users'].find({}, {'_id': False}):
         try:
-            RefreshToken(user['discord_id'])
+            refreshToken(user['discord_id'])
             print('refresh for user', user['discord_id'],)
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as err:
             print(err)
