@@ -1,9 +1,9 @@
 {
-    "Login": "https://uis.ptithcm.edu.vn/api/auth/login",
-    "Xem_Info": "https://uis.ptithcm.edu.vn/api/dkmh/w-locsinhvieninfo",
-    "Info_Picture": "https://uis.ptithcm.edu.vn/api/sms/w-locthongtinimagesinhvien",
-    "Xem_Lich_Hoc": "https://uis.ptithcm.edu.vn/api/sch/w-locdstkbtuanusertheohocky",
-    "Xem_Lich_Thi": "https://uis.ptithcm.edu.vn/api/epm/w-locdslichthisvtheohocky",
-    "Xem_Diem": "https://uis.ptithcm.edu.vn/api/srm/w-locdsdiemsinhvien?hien_thi_mon_theo_hkdk=false",
-    "Xem_Hoc_Phi": "https://uis.ptithcm.edu.vn/api/rms/w-locdstonghophocphisv"
+    "Login": "please enter the link",
+    "Xem_Info": "please enter the link",
+    "Info_Picture": "please enter the link",
+    "Xem_Lich_Hoc": "please enter the link",
+    "Xem_Lich_Thi": "please enter the link",
+    "Xem_Diem": "please enter the link",
+    "Xem_Hoc_Phi": "please enter the link"
 }
